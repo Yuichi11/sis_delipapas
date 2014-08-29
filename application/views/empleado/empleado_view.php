@@ -7,12 +7,13 @@
                 </div>
                 <div class="panel-body">
                     <?php if ($this->session->userdata('mensaje_emp') && $this->session->userdata('mensaje_emp') != "") { ?>
-                        <div class="alert alert-success alert-dismissable">
+                        <div class="alert alert-<?= $this->session->userdata('ripo_mensaje_emp') ?> alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <?= $this->session->userdata('mensaje_emp') ?>
                         </div>
                         <?php
                         $this->session->unset_userdata('mensaje_emp');
+                        $this->session->unset_userdata('ripo_mensaje_emp');
                     }
                     ?>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalNuevoEmpleado"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Nuevo</button>
@@ -92,7 +93,16 @@
                 <h4 class="modal-title" id="myModalLabel">Nuevo empleado</h4>
             </div>
             <div class="modal-body">
-
+                <?php if ($this->session->userdata('mensaje_nemp') && $this->session->userdata('mensaje_nemp') != "") { ?>
+                    <div class="alert alert-<?= $this->session->userdata('ripo_mensaje_nemp') ?> alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?= $this->session->userdata('mensaje_nemp') ?>
+                    </div>
+                    <?php
+                    $this->session->unset_userdata('mensaje_nemp');
+                    $this->session->unset_userdata('ripo_mensaje_nemp');
+                }
+                ?>
                 <div class="form-group">
                     <label>Nombres: *</label>
                     <?= form_input($nombre) ?>
@@ -102,11 +112,16 @@
                     <?= form_input($apellido) ?>
                 </div>
                 <div class="form-group">
-                    <label>D.N.I.: *</label>
+                    <label>D.N.I.: * <span class="text-muted" style="font-style: italic;">(Debe contener 8 dígitos)</span></label>
                     <?= form_input($dni) ?>
                 </div>
                 <div class="form-group">
                     <label>Teléfono: *</label>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <button type="button" class="btn btn-primary active">Left</button>
+                        <button type="button" class="btn btn-primary">Middle</button>
+                        <button type="button" class="btn btn-primary">Right</button>
+                    </div>
                     <?= form_input($telefono) ?>
                 </div>
                 <div class="form-group">
@@ -136,7 +151,11 @@
                 </div>
                 <div class="form-group input-group" style="width: 160px;">
                     <span class="input-group-addon">A.F.P. *</span>
-                    <input type="text" name="afp" id="afp_emp" value="0" maxlength="5" class="form-control" style="text-align: right;" required="true">
+                    <input type="text" name="afp" id="afp_emp" value="0" maxlength="5" class="form-control" style="text-align: right;" required="true" <?php
+                    if (isset($afp_dis) && $afp_dis == 'true') {
+                        echo 'disabled';
+                    }
+                    ?>>
                     <span class="input-group-addon">%</span>
                 </div>
                 <p class="text-muted" style="font-style: italic;">(*) Los campos con asterisco son obligatorios.</p>
@@ -151,3 +170,22 @@
         </div>
     </div>
 </div>
+
+<table id="empleados-reg" style="display: none;">
+    <?php foreach ($empleados as $row) { ?>
+        <tr>
+            <td><?= $row->codi_emp ?></td>
+            <td><?= $row->nomb_emp ?></td>
+            <td><?= $row->apel_emp ?></td>
+            <td><?= $row->dire_emp ?></td>
+            <td><?= $row->dni_emp ?></td>
+            <td><?= $row->telf_emp ?></td>
+            <td><?= $row->sexo_emp ?></td>
+            <td><?= $row->afp_emp ?></td>
+            <td><?= $row->civi_emp ?></td>
+            <td><?= $row->esta_emp ?></td>
+            <td><?= $row->codi_pla ?></td>
+            <td><?= $row->codi_tem ?></td>
+        </tr>
+    <?php } ?>
+</table>
