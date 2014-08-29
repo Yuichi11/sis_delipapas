@@ -98,8 +98,11 @@
 
         <script src="<?= base_url() ?>resources/js/config/config.js"></script>
         <script src="<?= base_url() ?>resources/js/jquery-2.1.1.min.js"></script>
+        <script src="<?= base_url() ?>resources/js/jquery-number.min.js"></script>
         <script src="<?= base_url() ?>resources/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?= base_url() ?>resources/js/AdminLTE/app.js" type="text/javascript"></script>
-
+        
+        <script src="<?= base_url() ?>resources/js/config/empleado.js" type="text/javascript"></script>
+        
     </body>
 </html>
