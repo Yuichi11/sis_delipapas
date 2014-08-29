@@ -1,9 +1,5 @@
 $(document).ready(function() {
-
-    $(document).on("click", 'span #movil_telefono', function(e) {
-        alert("das");
-    });
-
+    
     $('#telefono_emp').inputmask("mask", {"mask": "(99) 999-9999"});
     $('#dni_emp').number(true, 0, ',', '');
     $('#afp_emp').number(true, 1);

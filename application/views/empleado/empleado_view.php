@@ -117,10 +117,10 @@
                 </div>
                 <div class="form-group">
                     <label>Teléfono: *</label>
-                    <div class="btn-group" data-toggle="buttons-radio">
-                        <button type="button" class="btn btn-primary active">Left</button>
-                        <button type="button" class="btn btn-primary">Middle</button>
-                        <button type="button" class="btn btn-primary">Right</button>
+                    <div id="tipo_telf" class="btn-group" data-toggle="buttons-radio">
+                        <button type="button" class="1 btn btn-primary">Left</button>
+                        <button type="button" class="2 btn btn-primary">Middle</button>
+                        <button type="button" class="3 btn btn-primary">Right</button>
                     </div>
                     <?= form_input($telefono) ?>
                 </div>
